@@ -1,7 +1,7 @@
 {
   "name": "@hellolin/renovate-config",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "packageManager": "pnpm@10.15.0",
   "scripts": {
