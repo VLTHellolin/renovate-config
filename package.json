@@ -1,0 +1,24 @@
+{
+  "name": "@hellolin/renovate-config",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.15.0",
+  "scripts": {
+    "prepare": "husky",
+    "validate": "renovate-config-validator default.json",
+    "lint": "eslint --cache --fix .",
+    "commitlint": "commitlint --edit",
+    "release": "bumpp"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^19.8.1",
+    "@hellolin/eslint-config": "^1.2.0",
+    "bumpp": "^10.2.3",
+    "commitlint": "^19.8.1",
+    "eslint": "^9.34.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
+    "renovate": "^41.82.6"
+  }
+}

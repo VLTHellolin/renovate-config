@@ -1,0 +1,128 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    ":autoMergePatch",
+    ":ignoreModulesAndTests",
+    "schedule:nonOfficeHours",
+    "mergeConfidence:age-confidence-badges",
+    "npm:unpublishSafe",
+    "group:monorepos",
+    "group:allNonMajor"
+  ],
+  "timezone": "Asia/Shanghai",
+  "labels": [
+    "dependencies"
+  ],
+  "dependencyDashboard": true,
+  "semanticCommits": "enabled",
+  "prCreation": "not-pending",
+  "prConcurrentLimit": 10,
+  "separateMinorPatch": true,
+  "ignoreDeps": [
+    "node",
+    "typescript"
+  ],
+  "npm": {
+    "enabled": true,
+    "rangeStrategy": "bump",
+    "postUpdateOptions": ["pnpmDedupe"],
+    "packageRules": [
+      {
+        "matchDepTypes": ["engines"],
+        "enabled": false
+      },
+      {
+        "matchPackageNames": ["@types/node"],
+        "matchUpdateTypes": ["major"],
+        "enabled": false
+      },
+      {
+        "matchPackageNames": ["*"],
+        "semanticCommitType": "chore"
+      },
+      {
+        "matchDepTypes": [
+          "dependencies",
+          "peerDependencies"
+        ],
+        "semanticCommitType": "feat"
+      },
+      {
+        "groupName": "react",
+        "matchPackageNames": [
+          "react**",
+          "@types/react**",
+          "babel-plugin-react-compiler",
+          "next"
+        ]
+      },
+      {
+        "groupName": "styling",
+        "matchPackageNames": [
+          "unocss",
+          "@unocss/**",
+          "**unocss-preset**",
+          "**unocss-transformer**",
+          "@iconify/**",
+          "@iconify-json/**",
+          "postcss",
+          "postcss-**"
+        ]
+      },
+      {
+        "groupName": "build",
+        "matchPackageNames": [
+          "vite",
+          "@vitejs/**",
+          "**vite-plugin**",
+          "rollup",
+          "@rollup/**",
+          "**rollup-plugin**",
+          "tsup",
+          "rolldown",
+          "tsdown",
+          "webpack",
+          "**webpack-plugin**",
+          "**unplugin-**",
+          "turbo"
+        ]
+      },
+      {
+        "groupName": "lint",
+        "matchPackageNames": [
+          "eslint**",
+          "@eslint/**",
+          "@eslint-community/**",
+          "typescript-eslint",
+          "@typescript-eslint/**",
+          "**eslint-plugin**",
+          "**eslint-config**",
+          "@hellolin/eslint-config",
+          "@hellolin-eslint/**"
+        ]
+      },
+      {
+        "groupName": "test",
+        "extends": ["packages:jsTest"]
+      },
+      {
+        "groupName": "dev-utils",
+        "matchPackageNames": [
+          "husky",
+          "simple-git-hooks",
+          "lint-staged",
+          "commitlint",
+          "@commitlint/**",
+          "bumpp",
+          "npm-run-all",
+          "tsx",
+          "@changesets/**"
+        ]
+      }
+    ]
+  },
+  "github-actions": {
+    "enabled": true,
+    "semanticCommitType": "ci"
+  }
+}
