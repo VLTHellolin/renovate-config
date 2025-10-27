@@ -66,7 +66,17 @@
           "@iconify/**",
           "@iconify-json/**",
           "postcss",
-          "postcss-**"
+          "postcss-**",
+          "@pandacss/**",
+          "class-variance-authority",
+          "cva",
+          "tailwindcss",
+          "tailwind-**",
+          "autoprefixer",
+          "styled-components",
+          "styled-system",
+          "stitches",
+          "@stitches/**"
         ]
       },
       {
@@ -84,7 +94,12 @@
           "webpack",
           "**webpack-plugin**",
           "**unplugin-**",
-          "turbo"
+          "turbo",
+          "@swc/**",
+          "swc-**",
+          "esbuild",
+          "esbuild-**",
+          "oxc-**"
         ]
       },
       {
