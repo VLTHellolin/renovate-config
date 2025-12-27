@@ -7,25 +7,35 @@
     "mergeConfidence:age-confidence-badges",
     "npm:unpublishSafe",
     "group:monorepos",
-    "group:allNonMajor"
+    "group:recommended",
+    "group:allNonMajor",
+    "helpers:githubDigestChangelogs"
   ],
+
   "timezone": "Asia/Shanghai",
-  "labels": [
-    "dependencies"
-  ],
   "dependencyDashboard": true,
+  
   "semanticCommits": "enabled",
+  "semanticCommitScope": "deps",
+  
+  "labels": ["dependencies"],
   "prCreation": "not-pending",
   "prConcurrentLimit": 10,
-  "separateMinorPatch": true,
-  "ignoreDeps": [
-    "node",
-    "typescript"
-  ],
+  "prHourlyLimit": 2,
+
+  "ignoreDeps": ["node"],
+  "ignoreTests": true,
+
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 6am on monday"]
+  },
+
   "npm": {
     "enabled": true,
     "rangeStrategy": "bump",
     "postUpdateOptions": ["pnpmDedupe"],
+
     "packageRules": [
       {
         "matchDepTypes": ["engines"],
@@ -37,105 +47,21 @@
         "enabled": false
       },
       {
+        "matchDepTypes": ["peerDependencies"],
+        "enabled": false
+      },
+      {
         "matchPackageNames": ["*"],
         "semanticCommitType": "chore"
       },
       {
-        "matchDepTypes": [
-          "dependencies",
-          "peerDependencies"
-        ],
+        "matchDepTypes": ["dependencies"],
+        "matchUpdateTypes": ["major"],
         "semanticCommitType": "feat"
-      },
-      {
-        "groupName": "react",
-        "matchPackageNames": [
-          "react**",
-          "@types/react**",
-          "babel-plugin-react-compiler",
-          "next"
-        ]
-      },
-      {
-        "groupName": "styling",
-        "matchPackageNames": [
-          "unocss",
-          "@unocss/**",
-          "**unocss-preset**",
-          "**unocss-transformer**",
-          "@iconify/**",
-          "@iconify-json/**",
-          "postcss",
-          "postcss-**",
-          "@pandacss/**",
-          "class-variance-authority",
-          "cva",
-          "tailwindcss",
-          "tailwind-**",
-          "autoprefixer",
-          "styled-components",
-          "styled-system",
-          "stitches",
-          "@stitches/**"
-        ]
-      },
-      {
-        "groupName": "build",
-        "matchPackageNames": [
-          "vite",
-          "@vitejs/**",
-          "**vite-plugin**",
-          "rollup",
-          "@rollup/**",
-          "**rollup-plugin**",
-          "tsup",
-          "rolldown",
-          "tsdown",
-          "webpack",
-          "**webpack-plugin**",
-          "**unplugin-**",
-          "turbo",
-          "@swc/**",
-          "swc-**",
-          "esbuild",
-          "esbuild-**",
-          "oxc-**"
-        ]
-      },
-      {
-        "groupName": "lint",
-        "matchPackageNames": [
-          "eslint**",
-          "@eslint/**",
-          "@eslint-community/**",
-          "typescript-eslint",
-          "@typescript-eslint/**",
-          "**eslint-plugin**",
-          "**eslint-config**",
-          "@hellolin/eslint-config",
-          "@hellolin-eslint/**"
-        ]
-      },
-      {
-        "groupName": "test",
-        "extends": ["packages:jsTest"]
-      },
-      {
-        "groupName": "dev-utils",
-        "matchPackageNames": [
-          "husky",
-          "simple-git-hooks",
-          "lint-staged",
-          "commitlint",
-          "@commitlint/**",
-          "bumpp",
-          "npm-run-all",
-          "tsx",
-          "@changesets/**"
-        ]
       }
     ]
   },
+
   "github-actions": {
     "enabled": true,
     "semanticCommitType": "ci"
