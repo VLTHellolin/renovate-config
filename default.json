@@ -5,7 +5,7 @@
     ":ignoreModulesAndTests",
     "schedule:nonOfficeHours",
     "mergeConfidence:age-confidence-badges",
-    "npm:unpublishSafe",
+    "security:minimumReleaseAgeNpm",
     "group:monorepos",
     "group:recommended",
     "group:allNonMajor",
